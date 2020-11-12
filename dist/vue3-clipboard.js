@@ -434,10 +434,7 @@
     autoSetContainer: false,
     appendToBody: true
   };
-  function copyText(_ref) {
-    var _text = _ref.text,
-        container = _ref.container,
-        callback = _ref.callback;
+  function copyText(_text, container, callback) {
     var fakeElement = document.createElement('button');
     var clipboard = new Clipboard(fakeElement, {
       text: function text() {

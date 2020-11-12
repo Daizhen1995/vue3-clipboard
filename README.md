@@ -48,7 +48,7 @@ In Options API:
 
 ```js
 const container = this.$refs.container
-this.$copyText('Text to copy', container)
+this.$copyText((text: 'Text to copy'), container)
 ```
 
 In Composition API:
@@ -118,17 +118,14 @@ app.use(VueClipboard, {
   export default {
     setup() {
       const doCopy = () => {
-        copyText({
-          text: 'Hello Clipborad',
-          callback(error, event) {
-            if (error) {
-              alert('Can not copy')
-              console.log(error)
-            } else {
-              alert('Copied')
-              console.log(event)
-            }
-          },
+        copyText('Hello Clipborad', undefined, (error, event) => {
+          if (error) {
+            alert('Can not copy')
+            console.log(error)
+          } else {
+            alert('Copied')
+            console.log(event)
+          }
         })
       }
 

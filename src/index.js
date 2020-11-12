@@ -4,7 +4,7 @@ let VueClipboardConfig = {
   autoSetContainer: false,
   appendToBody: true,
 }
-export function copyText({ text, container, callback }) {
+export function copyText(text, container, callback) {
   var fakeElement = document.createElement('button')
   var clipboard = new Clipboard(fakeElement, {
     text: function () {
