@@ -1,0 +1,43 @@
+{
+  "name": "vue3-clipboard",
+  "version": "1.0.0",
+  "description": "A Vuejs3 binding for clipboard.js",
+  "main": "dist/vue3-clipboard.js",
+  "module": "dist/vue3-clipboard-es.js",
+  "scripts": {
+    "build": "rollup -c build/rollup.config.dev.js",
+    "build:prod": "rollup -c build/rollup.config.prod.js",
+    "clean": "rimraf dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Daizhen1995/vue3-clipboard.git"
+  },
+  "keywords": [
+    "vue",
+    "vue3",
+    "clipboard",
+    "clipboard.js"
+  ],
+  "author": "daizhen1995 <daizhen@know-act.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "eslint": "^7.13.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.1.2",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.33.1",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^7.0.2"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "dependencies": {
+    "clipboard": "^2.0.6"
+  }
+}
