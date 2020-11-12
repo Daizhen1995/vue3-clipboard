@@ -47,7 +47,7 @@ See [clipboardjs](https://clipboardjs.com/#advanced-usage) document and [this pu
 In Options API:
 
 ```js
-let container = this.$refs.container
+const container = this.$refs.container
 this.$copyText('Text to copy', container)
 ```
 
@@ -55,9 +55,10 @@ In Composition API:
 
 ```js
 import { copyText } from 'vue3-clipboard'
+import { ref } from 'vue'
 
-let container = this.$refs.container
-copyText('Text to copy', container)
+const container = ref(null)
+copyText('Text to copy', container.value)
 ```
 
 Or you can let `vue3-clipboard` set `container` to current element by doing this:
