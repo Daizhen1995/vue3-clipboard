@@ -432,30 +432,31 @@ var VueClipboardConfig = {
   autoSetContainer: false,
   appendToBody: true
 };
-function copyText(_text, container) {
-  return new Promise(function (resolve, reject) {
-    var fakeElement = document.createElement('button');
-    var clipboard = new Clipboard(fakeElement, {
-      text: function text() {
-        return _text;
-      },
-      action: function action() {
-        return 'copy';
-      },
-      container: _typeof(container) === 'object' ? container : document.body
-    });
-    clipboard.on('success', function (e) {
-      clipboard.destroy();
-      resolve(e);
-    });
-    clipboard.on('error', function (e) {
-      clipboard.destroy();
-      reject(e);
-    });
-    if (VueClipboardConfig.appendToBody) document.body.appendChild(fakeElement);
-    fakeElement.click();
-    if (VueClipboardConfig.appendToBody) document.body.removeChild(fakeElement);
+function copyText(_ref) {
+  var _text = _ref.text,
+      container = _ref.container,
+      callback = _ref.callback;
+  var fakeElement = document.createElement('button');
+  var clipboard = new Clipboard(fakeElement, {
+    text: function text() {
+      return _text;
+    },
+    action: function action() {
+      return 'copy';
+    },
+    container: _typeof(container) === 'object' ? container : document.body
   });
+  clipboard.on('success', function (e) {
+    clipboard.destroy();
+    callback(undefined, e);
+  });
+  clipboard.on('error', function (e) {
+    clipboard.destroy();
+    callback(e, undefined);
+  });
+  if (VueClipboardConfig.appendToBody) document.body.appendChild(fakeElement);
+  fakeElement.click();
+  if (VueClipboardConfig.appendToBody) document.body.removeChild(fakeElement);
 }
 function index (app, vueClipboardConfig) {
   VueClipboardConfig = vueClipboardConfig;

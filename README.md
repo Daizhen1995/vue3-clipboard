@@ -118,16 +118,18 @@ app.use(VueClipboard, {
   export default {
     setup() {
       const doCopy = () => {
-        copyText('Hello Clipborad').then(
-          function (e) {
-            alert('Copied')
-            console.log(e)
+        copyText({
+          text: 'Hello Clipborad',
+          callback(error, event) {
+            if (error) {
+              alert('Can not copy')
+              console.log(error)
+            } else {
+              alert('Copied')
+              console.log(event)
+            }
           },
-          function (e) {
-            alert('Can not copy')
-            console.log(e)
-          }
-        )
+        })
       }
 
       return { doCopy }

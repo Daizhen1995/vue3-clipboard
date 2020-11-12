@@ -4,30 +4,28 @@ let VueClipboardConfig = {
   autoSetContainer: false,
   appendToBody: true,
 }
-export function copyText(text, container) {
-  return new Promise(function (resolve, reject) {
-    var fakeElement = document.createElement('button')
-    var clipboard = new Clipboard(fakeElement, {
-      text: function () {
-        return text
-      },
-      action: function () {
-        return 'copy'
-      },
-      container: typeof container === 'object' ? container : document.body,
-    })
-    clipboard.on('success', function (e) {
-      clipboard.destroy()
-      resolve(e)
-    })
-    clipboard.on('error', function (e) {
-      clipboard.destroy()
-      reject(e)
-    })
-    if (VueClipboardConfig.appendToBody) document.body.appendChild(fakeElement)
-    fakeElement.click()
-    if (VueClipboardConfig.appendToBody) document.body.removeChild(fakeElement)
+export function copyText({ text, container, callback }) {
+  var fakeElement = document.createElement('button')
+  var clipboard = new Clipboard(fakeElement, {
+    text: function () {
+      return text
+    },
+    action: function () {
+      return 'copy'
+    },
+    container: typeof container === 'object' ? container : document.body,
   })
+  clipboard.on('success', function (e) {
+    clipboard.destroy()
+    callback(undefined, e)
+  })
+  clipboard.on('error', function (e) {
+    clipboard.destroy()
+    callback(e, undefined)
+  })
+  if (VueClipboardConfig.appendToBody) document.body.appendChild(fakeElement)
+  fakeElement.click()
+  if (VueClipboardConfig.appendToBody) document.body.removeChild(fakeElement)
 }
 
 export default function (app, vueClipboardConfig) {
