@@ -89,7 +89,7 @@ app.use(VueClipboard, {
 <script>
   export default {
     setup() {
-      const message = 'Hello Clipborad!'
+      const message = 'Hello Clipboard!'
       const onCopy = (e) => {
         alert('You just copied: ' + e.text)
       }
@@ -118,7 +118,7 @@ app.use(VueClipboard, {
   export default {
     setup() {
       const doCopy = () => {
-        copyText('Hello Clipborad', undefined, (error, event) => {
+        copyText('Hello Clipboard', undefined, (error, event) => {
           if (error) {
             alert('Can not copy')
             console.log(error)
