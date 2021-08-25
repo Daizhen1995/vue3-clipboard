@@ -29,7 +29,7 @@ export function copyText(text, container, callback) {
 }
 
 export default function (app, vueClipboardConfig) {
-  VueClipboardConfig = vueClipboardConfig
+  if (vueClipboardConfig) VueClipboardConfig = Object.assign(VueClipboardConfig, vueClipboardConfig)
   app.config.globalProperties.$copyText = copyText
   app.directive('clipboard', {
     mounted: function (el, binding) {
